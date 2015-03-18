@@ -17,6 +17,6 @@ public class BaseScreen : MonoBehaviour {
 
 	}
 
-	public virtual void Destroy(){}
+	// public virtual void Destroy(){}
 	
 }

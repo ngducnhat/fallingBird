@@ -37,13 +37,15 @@ public class Director : MonoBehaviour {
 	public void SetScreen(ScreenType screenId, params object[] inputs) {
 		previousId = currentScreenId;
 		currentScreenId = screenId;
-		if (currentScreen) {
-			currentScreen.Destroy();
-		}
+		Reset();
 
 		switch (currentScreenId) {
 			case ScreenType.SPLASH:
 				currentScreen = new GameObject("SplashScreen", typeof(SplashScreen)).GetComponent<SplashScreen>();				
+			break;
+
+			case ScreenType.MAIN_MENU:
+				currentScreen = new GameObject("MainMenuScreen", typeof(MainMenuScreen)).GetComponent<MainMenuScreen>();				
 			break;
 		}
 
@@ -51,6 +53,17 @@ public class Director : MonoBehaviour {
 		currentScreen.Init(inputs);
 		currentScreen.transform.parent = container;
 
+	}
+
+	public void Reset() {
+		if (container != null) {
+			Destroy(container.gameObject);
+		}
+
+		container = new GameObject("Container").transform;
+		container.position = Vector3.zero;
+		container.parent = thisTransform;
+		container.transform.localScale += new Vector3(0.0f, 0.0f, 0.001f);
 	}
 
 }

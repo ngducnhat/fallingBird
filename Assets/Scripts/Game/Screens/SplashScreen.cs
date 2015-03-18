@@ -11,7 +11,6 @@ public class SplashScreen : BaseScreen {
 
 	public override void Init(params object[] inputs) {
 		base.Init(inputs);
-		Debug.Log(prefabPath);
 		panel = (Instantiate(Resources.Load(prefabPath + "SplashUI")) as GameObject).GetComponent<UIPanel>();
 		panel.transform.parent = thisTransform;
 		panel.alpha = 0.0f;
@@ -45,7 +44,7 @@ public class SplashScreen : BaseScreen {
 	public void FinishHideTween() {
 		isShowing = !isShowing;
 		isTweening = false;
-		// Director.Instance.SetScreen(Director.ScreenType.MAIN_MENU);
+		Director.Instance.SetScreen(Director.ScreenType.MAIN_MENU);
 	}
 	
 }
